@@ -1,16 +1,15 @@
 import { useState, useEffect, useCallback, useContext } from 'react';
-import { CityContext } from '../../Context/CityContext';
-
-const offsetInSeconds = -10800
+import { CurrentWeatherContext } from '../../Context/CurrentWeatherContext';
 
 function RealTimeClock() {
   const [currentTime, setCurrentTime] = useState('');
+  const { weather } = useContext(CurrentWeatherContext);
 
   const calculateTimeWithOffset = useCallback(() => {
     // Obtener la hora UTC actual
     const nowUTC = new Date(new Date().toUTCString());
     // Ajustar la hora con el desplazamiento de zona horaria en milisegundos
-    const timeWithOffset = new Date(nowUTC.getTime() + offsetInSeconds * 1000);
+    const timeWithOffset = new Date(nowUTC.getTime() + weather?.timezone * 1000);
     
     // Extraer horas, minutos y segundos
     const hours = timeWithOffset.getUTCHours();
@@ -19,7 +18,7 @@ function RealTimeClock() {
     
     // Formatear la hora como HH:MM:SS, asegurando dos dígitos
     return `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-  }, [offsetInSeconds]);
+  }, [weather]);
 
   useEffect(() => {
     const tick = () => {

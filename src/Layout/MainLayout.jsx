@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import RealTimeClock from "../Common/Clock/Clock";
 import { NavBar } from "../Components";
 import { popularCities } from "../Constants/cities";
 import { CityContext } from "../Context/CityContext";
@@ -17,9 +16,10 @@ export const MainLayout = ({ children }) => {
             {popularCities.map((popularCity) => (
               <div
                 key={popularCity}
-                className={`relative hover:bg-neutral-800 w-full pl-4 ${
-                  popularCity === city &&
-                  "border-l-4 border-transparent border-slate-100 bg-neutral-800"
+                className={`relative hover:bg-neutral-800 w-full pl-4 border-l-4  ${
+                  popularCity === city
+                    ? " border-slate-100 bg-neutral-800"
+                    : "border-transparent"
                 } `}
                 onClick={() => setCity(popularCity)}
               >
@@ -30,13 +30,7 @@ export const MainLayout = ({ children }) => {
             ))}
           </div>
         </div>
-        <main className="flex-grow p-4 overflow-auto">
-          <div className="flex flex-col text-center">
-            <p className="text-5xl font-bold ">{city}</p>
-            <RealTimeClock />
-          </div>
-          <div className="py-4">{children}</div>
-        </main>
+        <main className="flex-grow p-4 overflow-auto">{children}</main>
       </div>
     </div>
   );

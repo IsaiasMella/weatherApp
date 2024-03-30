@@ -22,7 +22,6 @@ export const DailyTemperature = () => {
   useEffect(() => {
     (async () => {
       const currentWeather = await getForecastWeather(city);
-      console.log('cambio');
       setWeather(currentWeather);
     })();
   }, [city]);
