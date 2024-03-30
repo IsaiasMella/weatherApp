@@ -21,7 +21,7 @@ Para realizarla el ejercicio decidí utilizar **[React](https://reactjs.org)** j
 
 ### Justificacion de librerias
 
-| Libreria | justificación 2 |
+| Libreria | Justificación |
 |--------------|--------------|
 | **[Tailwind CSS](https://tailwindcss.com)** | Velocidad a la hora de realizar estilos |
 | **[Axios](https://axios-http.com/)** | Velocidad de desarrollo y mejor legibilidad |
