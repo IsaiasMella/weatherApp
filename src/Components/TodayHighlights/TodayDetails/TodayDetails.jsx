@@ -2,10 +2,12 @@ import { useCallback } from "react";
 import { Card } from "../../../Common";
 
 export const TodayDetails = ({ weather }) => {
+
   const metersToKilometers = useCallback((meters) => {
     const kilometers = meters / 1000;
     return kilometers.toFixed(1);
   }, []);
+  
   return (
     <>
       <Card className="bg-neutral-900/70">

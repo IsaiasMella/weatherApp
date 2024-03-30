@@ -6,12 +6,11 @@ function RealTimeClock() {
   const { weather } = useContext(CurrentWeatherContext);
 
   const calculateTimeWithOffset = useCallback(() => {
-    // Obtener la hora UTC actual
+    // Obtener el UTC actual
     const nowUTC = new Date(new Date().toUTCString());
-    // Ajustar la hora con el desplazamiento de zona horaria en milisegundos
+    // Ajustar la zona horaria en milisegundos
     const timeWithOffset = new Date(nowUTC.getTime() + weather?.timezone * 1000);
     
-    // Extraer horas, minutos y segundos
     const hours = timeWithOffset.getUTCHours();
     const minutes = timeWithOffset.getUTCMinutes();
     const seconds = timeWithOffset.getUTCSeconds();
@@ -21,11 +20,11 @@ function RealTimeClock() {
   }, [weather]);
 
   useEffect(() => {
-    const tick = () => {
+    const clock = () => {
       setCurrentTime(calculateTimeWithOffset());
     };
-    tick(); // Actualizar inmediatamente la hora al montar el componente
-    const intervalId = setInterval(tick, 1000); // Actualizar la hora cada segundo
+    clock(); 
+    const intervalId = setInterval(clock, 1000); // Actualizar la hora cada segundo
 
     return () => clearInterval(intervalId); // Limpiar intervalo al desmontar el componente
   }, [calculateTimeWithOffset]);

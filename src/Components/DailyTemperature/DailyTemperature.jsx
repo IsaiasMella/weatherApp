@@ -9,7 +9,7 @@ export const DailyTemperature = () => {
   const { city } = useContext(CityContext);
 
   const extractHour = useCallback((dateTime) => {
-    // Obtiene la hora en formato 24 horas
+    // Horario en formato 24 horas
     const hour24 = parseInt(dateTime.substring(11, 13), 10);
 
     // Calcula la hora en formato 12 horas
